@@ -1,38 +1,73 @@
 <template>
   <div class="main">
-    <p>
-      <b>You are now playing as Hunter.</b>
-    </p>
+    <center>
+      <div class="main_game">
+        <p>
+          <b>You are now playing as Hunter.</b>
+        </p>
 
-    <p>
-      <b>PlayerHP</b>
-      : {{ this.HunterHP}}
-      <b>PlayerStamina</b>
-      : {{ this.HunterStamina }}
-    </p>
+        <div class="row">
+          <div class="col-md-7">  
 
-       <img src="../assets/hunter.jpg" style="width: 200px; height: 200px;">
-<br><br>
-    <button @click="HunterAttack">Attack(-10 Stamina)</button>
-    <button @click="HunterUltimate">Ultimate(-50 Stamina)</button>
-    <button>Recharge(+10 Stamina)</button>
+        <p>
+          <b>PlayerHP</b>
+          : {{ this.HunterHP }}
+          <b-progress
+            :value="this.HunterHP"
+            :max="100"
+            class="mb-3"
+            variant="success"
+          ></b-progress>
+          <b>PlayerStamina</b>
+          : {{ this.HunterStamina }}
+          <b-progress
+            :value="this.HunterStamina"
+            :max="100"
+            class="mb-3"
+            variant="primary"
+          ></b-progress>
+        </p>
+          </div>
 
-    <div class="arena">
-      <h1>BATTLE!</h1>
-    </div>
 
-    <p>
-      <b>DemonHP</b>
-      : {{ this.DemonHP}}
-    </p>
+          <div class="col-md-5">  
+<img src="../assets/hunter.jpg" style="width: 200px; height: 200px;" />
+        
+        <br /><br />
+        <button @click="HunterAttack">Attack(-10 Stamina)</button>
+        <button @click="HunterUltimate">Ultimate(-50 Stamina)</button>
+        <button @click="HunterRecharge">Recharge(+10 Stamina)</button>
 
-<img src="../assets/monster.jpg" style="width: 200px; height: 200px;">
+        </div>
+        </div>
 
+        <br /><br /><br />
 
-    <br />
-    <br />
-    <br />
-    <router-link :to="'/ChooseSide'">Exit Battle</router-link>
+        <div class="arena">
+          <h1>BATTLE!</h1>
+        </div>
+
+        <br /><br /><br />
+
+        <p>
+          <b>DemonHP</b>
+          : {{ this.DemonHP }}
+          <b-progress
+            :value="this.DemonHP"
+            :max="500"
+            class="mb-3"
+            variant="danger"
+          ></b-progress>
+        </p>
+
+        <img src="../assets/monster.jpg" style="width: 200px; height: 200px;" />
+
+        <br />
+        <br />
+        <br />
+        <router-link :to="'/ChooseSide'">Exit Battle</router-link>
+      </div>
+    </center>
   </div>
 </template>
 
@@ -60,6 +95,11 @@ export default {
       alert("You perform a special attack!");
       this.EndGame();
     },
+    HunterRecharge() {
+      this.HunterStamina += 10;
+      alert("You recharged!");
+      this.EndGame();
+    },
     DemonAttack() {
       this.HunterHP = this.HunterHP - 10;
       this.EndGame();
@@ -77,13 +117,24 @@ export default {
       this.HunterHP = 100;
       this.HunterStamina = 100;
       this.DemonHP = 500;
-
-
     }
   }
 };
 </script>
 
-
 <style scoped>
+.main_game {
+  text-align: center;
+  opacity: 1;
+  background-image: url("../assets/white_bg.jpg");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 50%;
+  padding: 5%;
+  border: 1px solid black;
+  border-radius: 5%;
+}
 </style>

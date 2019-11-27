@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import ChooseSide from "../components/ChooseSide.vue";
 import PlayAsHunter from "../components/PlayAsHunter.vue";
 import PlayAsDemon from "../components/PlayAsDemon.vue";
+import Test from "../components/Test.vue"
 
 Vue.use(VueRouter);
 
@@ -23,6 +24,10 @@ const routeList = [
   {
     path: "/PlayAsDemon",
     component: PlayAsDemon,
+  },
+  {
+    path: "/Test",
+    component: Test,
   }
 ];
 
